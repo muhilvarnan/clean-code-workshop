@@ -38,12 +38,17 @@ public class Rental {
     return amount;
   }
 
-  public int getFrequentPoint() {
-    if ((movie.getPriceCode() == Movie.NEW_RELEASE)
+  private boolean isBonusApplicable() {
+    return (movie.getPriceCode() == Movie.NEW_RELEASE)
             &&
-            daysRented > 1) {
-      return 2;
+            daysRented > 1;
+  }
+
+  public int getFrequentPoint() {
+    int frequentPoint = 1;
+    if (isBonusApplicable()) {
+      return frequentPoint++;
     }
-    return  1;
+    return  frequentPoint;
   }
 }
