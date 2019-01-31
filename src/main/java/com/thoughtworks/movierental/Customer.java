@@ -6,7 +6,7 @@ import java.util.List;
 public class Customer {
 
   private String name;
-  public List<Rental> rentals = new ArrayList<>();
+  private Rentals rentals = new Rentals(new ArrayList<>());
 
   public Customer(String name) {
     this.name = name;
@@ -20,40 +20,24 @@ public class Customer {
     return name;
   }
 
-  public Double getRentalTotalAmount() {
-    double totalAmount = 0;
-    for (Rental each : rentals) {
-      totalAmount += each.getRentalAmount();
-    }
-    return totalAmount;
-  }
-
-  public int getFrequentPoints() {
-    int frequentRenterPoints = 0;
-    for (Rental each : rentals) {
-      frequentRenterPoints += each.getFrequentPoint();
-    }
-    return frequentRenterPoints;
-  }
-
 
   public String statement() {
-    return new TextStatement().display(name, rentals,getRentalTotalAmount(), getFrequentPoints());
+    return new TextStatement().display(name, rentals);
   }
 
 
   public String htmlStatement() {
 
       String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br />";
-      for (Rental each : rentals) {
+      for (Rental each : rentals.getItems()) {
           //show figures for this rental
           result += each.getMovie().getTitle() + " " +
                   String.valueOf(each.getRentalAmount())+ "<br />";
       }
 
       //add footer lines result
-      result += "Amount owed is <b>" + String.valueOf(getRentalTotalAmount()) + "</b><br />";
-      result += "You earned <b>" + String.valueOf(getFrequentPoints()) + "</b>"
+      result += "Amount owed is <b>" + String.valueOf(rentals.getRentalTotalAmount()) + "</b><br />";
+      result += "You earned <b>" + String.valueOf(rentals.getFrequentPoints()) + "</b>"
               + " frequent renter points";
       return result;
 
