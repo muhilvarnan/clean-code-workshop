@@ -38,18 +38,7 @@ public class Customer {
 
 
   public String statement() {
-    String result = "Rental Record for " + getName() + "\n";
-    for (Rental each : rentals) {
-      //show figures for this rental
-      result += "\t" + each.getMovie().getTitle() + "\t" +
-          String.valueOf(each.getRentalAmount())+ "\n";
-    }
-
-    //add footer lines result
-    result += "Amount owed is " + String.valueOf(getRentalTotalAmount()) + "\n";
-    result += "You earned " + String.valueOf(getFrequentPoints())
-        + " frequent renter points";
-    return result;
+    return new TextStatement().display(name, rentals,getRentalTotalAmount(), getFrequentPoints());
   }
 
 
