@@ -17,29 +17,17 @@ public class Customer {
   }
 
   public String getName() {
-    return name;
+      return name;
   }
 
 
   public String statement() {
-    return new TextStatement().display(name, rentals);
+      return new TextStatement().display(name, rentals);
   }
 
 
   public String htmlStatement() {
-
-      String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br />";
-      for (Rental each : rentals) {
-          //show figures for this rental
-          result += each.getMovie().getTitle() + " " +
-                  String.valueOf(each.getRentalAmount())+ "<br />";
-      }
-
-      //add footer lines result
-      result += "Amount owed is <b>" + String.valueOf(rentals.getRentalTotalAmount()) + "</b><br />";
-      result += "You earned <b>" + String.valueOf(rentals.getFrequentPoints()) + "</b>"
-              + " frequent renter points";
-      return result;
+      return new HtmlStatement().display(name, rentals);
 
   }
 }
