@@ -114,7 +114,10 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 3);
         Customer customer = new Customer("test");
         customer.addRental(rental);
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 3.5</b><br /><b>You earned 1 frequent renter points</b><br /><b>test</b><br /></body></html>",customer.htmlStatement());
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />" +
+                "movie1 3.5<br />" +
+                "Amount owed is <b>3.5</b><br />" +
+                "You earned <b>1</b> frequent renter points",customer.htmlStatement());
 
     }
 
@@ -124,7 +127,7 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 1);
         Customer customer = new Customer("test");
         customer.addRental(rental);
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 3.0</b><br /><b>You earned 1 frequent renter points</b><br /><b>test</b><br /></body></html>", customer.htmlStatement());
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />movie1 3.0<br />Amount owed is <b>3.0</b><br />You earned <b>1</b> frequent renter points", customer.htmlStatement());
     }
 
     @Test
@@ -133,7 +136,7 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 2);
         Customer customer = new Customer("test");
         customer.addRental(rental);
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 6.0</b><br /><b>You earned 2 frequent renter points</b><br /><b>test</b><br /></body></html>", customer.htmlStatement());
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />movie1 6.0<br />Amount owed is <b>6.0</b><br />You earned <b>2</b> frequent renter points", customer.htmlStatement());
     }
 
     @Test
@@ -142,7 +145,7 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 2);
         Customer customer = new Customer("test");
         customer.addRental(rental);
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 1.5</b><br /><b>You earned 1 frequent renter points</b><br /><b>test</b><br /></body></html>",customer.htmlStatement());
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />movie1 1.5<br />Amount owed is <b>1.5</b><br />You earned <b>1</b> frequent renter points",customer.htmlStatement());
 
     }
 
@@ -152,15 +155,14 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 4);
         Customer customer = new Customer("test");
         customer.addRental(rental);
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 3.0</b><br /><b>You earned 1 frequent renter points</b><br /><b>test</b><br /></body></html>",customer.htmlStatement());
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />movie1 3.0<br />Amount owed is <b>3.0</b><br />You earned <b>1</b> frequent renter points",customer.htmlStatement());
 
     }
 
     @Test
     public void testHtmlStatementNoRentals(){
         Customer customer = new Customer("test");
-        assertEquals("<html><head>Rental Record for test</head><body><h1>Rental Record for test</h1><b>Amount owed is 0.0</b><br /><b>You earned 0 frequent renter points</b><br /><b>test</b><br /></body></html>",customer.htmlStatement());
-
+        assertEquals("<h1>Rental Record for <b>test</b></h1><br />Amount owed is <b>0.0</b><br />You earned <b>0</b> frequent renter points",customer.htmlStatement());
     }
 
 }

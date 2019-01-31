@@ -19,10 +19,6 @@ public class Customer {
     return name;
   }
 
-  private String getTitle() {
-    return  "Rental Record for " + getName();
-  }
-
   private Double getRentalTotalAmount() {
     double totalAmount = 0;
     for (Rental each : rentals) {
@@ -41,7 +37,7 @@ public class Customer {
 
 
   public String statement() {
-    String result = getTitle() + "\n";
+    String result = "Rental Record for " + getName() + "\n";
     for (Rental each : rentals) {
       //show figures for this rental
       result += "\t" + each.getMovie().getTitle() + "\t" +
@@ -55,29 +51,21 @@ public class Customer {
     return result;
   }
 
-  private String getHtmlHead() {
-    return  "<head>" + getTitle() +"</head>";
-  }
-
-  private String getHtmlBody() {
-    String body = "<body>" +
-              "<h1>"+getTitle()+"</h1>";
-    body += "<b>Amount owed is " + String.valueOf(getRentalTotalAmount())+ "</b>";
-    body += "<br />";
-    body += "<b>You earned " + String.valueOf(getFrequentPoints())+ " frequent renter points</b>";
-    body += "<br />";
-    body += "<b>"+getName()+"</b>";
-    body += "<br />";
-    body +=   "</body>";
-    return body;
-  }
 
   public String htmlStatement() {
-    String html = "<html>"+
-            getHtmlHead() +
-            getHtmlBody() +
-            "</html>";
-    return html;
+
+      String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br />";
+      for (Rental each : rentals) {
+          //show figures for this rental
+          result += each.getMovie().getTitle() + " " +
+                  String.valueOf(each.getRentalAmount())+ "<br />";
+      }
+
+      //add footer lines result
+      result += "Amount owed is <b>" + String.valueOf(getRentalTotalAmount()) + "</b><br />";
+      result += "You earned <b>" + String.valueOf(getFrequentPoints()) + "</b>"
+              + " frequent renter points";
+      return result;
 
   }
 }
