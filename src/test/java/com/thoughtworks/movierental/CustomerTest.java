@@ -16,10 +16,11 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 1);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t2.0\n" +
                 "Amount owed is 2.0\n" +
-                "You earned 1 frequent renter points",customer.statement());
+                "You earned 1 frequent renter points",textStatement.statement());
 
     }
 
@@ -29,10 +30,11 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 3);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t3.5\n" +
                 "Amount owed is 3.5\n" +
-                "You earned 1 frequent renter points",customer.statement());
+                "You earned 1 frequent renter points",textStatement.statement());
 
     }
 
@@ -42,10 +44,11 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 1);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t3.0\n" +
                 "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points", customer.statement());
+                "You earned 1 frequent renter points", textStatement.statement());
     }
 
     @Test
@@ -54,10 +57,11 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 2);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t6.0\n" +
                 "Amount owed is 6.0\n" +
-                "You earned 2 frequent renter points", customer.statement());
+                "You earned 2 frequent renter points", textStatement.statement());
     }
 
     @Test
@@ -66,10 +70,11 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 2);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t1.5\n" +
                 "Amount owed is 1.5\n" +
-                    "You earned 1 frequent renter points",customer.statement());
+                    "You earned 1 frequent renter points",textStatement.statement());
 
     }
 
@@ -79,19 +84,21 @@ public class CustomerTest {
         Rental rental = new Rental(movie, 4);
         Customer customer = new Customer("test");
         customer.addRental(rental);
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "\tmovie1\t3.0\n" +
                 "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points",customer.statement());
+                "You earned 1 frequent renter points",textStatement.statement());
 
     }
 
     @Test
     public void testStatementNoRentals(){
         Customer customer = new Customer("test");
+        TextStatement textStatement = new TextStatement(customer);
         assertEquals("Rental Record for test\n" +
                 "Amount owed is 0.0\n" +
-                "You earned 0 frequent renter points",customer.statement());
+                "You earned 0 frequent renter points",textStatement.statement());
 
     }
 
