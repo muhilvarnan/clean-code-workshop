@@ -6,7 +6,7 @@ import java.util.List;
 public class Customer {
 
   private String name;
-  private Rentals rentals = new Rentals(new ArrayList<>());
+  private Rentals rentals = new Rentals();
 
   public Customer(String name) {
     this.name = name;
@@ -29,7 +29,7 @@ public class Customer {
   public String htmlStatement() {
 
       String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br />";
-      for (Rental each : rentals.getItems()) {
+      for (Rental each : rentals) {
           //show figures for this rental
           result += each.getMovie().getTitle() + " " +
                   String.valueOf(each.getRentalAmount())+ "<br />";
