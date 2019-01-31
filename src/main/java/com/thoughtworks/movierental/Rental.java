@@ -47,7 +47,7 @@ public class Rental {
   public int getFrequentPoint() {
     int frequentPoint = 1;
     if (isBonusApplicable()) {
-      return frequentPoint++;
+      return frequentPoint+1;
     }
     return  frequentPoint;
   }
